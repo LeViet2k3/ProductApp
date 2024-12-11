@@ -4,6 +4,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "products")
@@ -12,9 +16,20 @@ public class Product {
     @Column(name = "ProductID")
     private String productID;
     private String categoryID;
+
     @Column(name = "productName")
+    @NotNull
+    @NotBlank(message = "Product's name cannot be null")
+    @Size(min = 3, max = 300)
     private String productName;
+
+    @NotNull
+    @Min(0)
     private int price;
+
+    @NotNull
+    @NotBlank(message = "Product's description cannot be null")
+    @Size(min = 5, max = 1000)
     private String description;
 
     public Product(String productID, String categoryID, String productName, int price, String description) {
