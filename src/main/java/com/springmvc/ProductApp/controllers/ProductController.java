@@ -52,9 +52,6 @@ public class ProductController {
             return "insertProduct";
         }
         try {
-            // random uuid => productID
-            // String productID, String categoryID, String productName, int price, String
-            // description
             product.setProductID(UUID.randomUUID().toString());
             productRepository.save(product);
             return "redirect:/categories";
